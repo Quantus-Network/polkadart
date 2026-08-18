@@ -24,7 +24,15 @@ Map<int, TypeDescriptor> parseTypes(List<metadata.PortableType> registry, String
 
     // Create Compact Generator
     if (type.typeDef is metadata.TypeDefCompact) {
-      // Ignore the compact type, is not important
+      // `Compact<()>` encodes to zero bytes, so it must not consume a compact
+      // integer. Chains instantiating `MultiAddress<AccountId, ()>` (the default
+      // when there is no indices pallet) declare `Index(Compact<()>)`; decoding
+      // that as a compact shifts every byte that follows.
+      final compact = type.typeDef as metadata.TypeDefCompact;
+      if (isUnitType(types[compact.type])) {
+        generators[typeID] = EmptyDescriptor(typeID);
+        continue;
+      }
       generators[typeID] = CompactDescriptor(typeID);
       continue;
     }
@@ -335,4 +343,10 @@ Map<int, TypeDescriptor> parseTypes(List<metadata.PortableType> registry, String
   }
 
   return generators;
+}
+
+/// Whether [portable] is the unit type `()`, which encodes to zero bytes.
+bool isUnitType(metadata.PortableType? portable) {
+  final typeDef = portable?.type.typeDef;
+  return typeDef is metadata.TypeDefTuple && typeDef.fields.isEmpty;
 }
