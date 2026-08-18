@@ -10,9 +10,21 @@ environment:
 
 dependencies:
   json_schema: ^5.2.1
-  polkadart: ^0.7.2
-  polkadart_scale_codec: ^1.6.0
-  substrate_metadata: ^1.6.0
+  polkadart:
+    git:
+      url: https://github.com/Quantus-Network/polkadart.git
+      ref: 0_7_3_quantus_1
+      path: packages/polkadart
+  polkadart_scale_codec:
+    git:
+      url: https://github.com/Quantus-Network/polkadart.git
+      ref: 0_7_3_quantus_1
+      path: packages/polkadart_scale_codec
+  substrate_metadata:
+    git:
+      url: https://github.com/Quantus-Network/polkadart.git
+      ref: 0_7_3_quantus_1
+      path: packages/substrate_metadata
   utility: ^1.0.3
 
 dev_dependencies:

@@ -14,7 +14,11 @@ dependencies:
   cryptography: ^2.7.0
   merlin: ^1.0.3
   ristretto255: ^1.0.2
-  substrate_bip39: ^0.7.1
+  substrate_bip39:
+    git:
+      url: https://github.com/Quantus-Network/polkadart.git
+      ref: 0_7_3_quantus_1
+      path: packages/substrate_bip39
 
 dev_dependencies:
   lints: ^6.0.0

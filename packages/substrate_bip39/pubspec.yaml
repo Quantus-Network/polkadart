@@ -14,7 +14,11 @@ dependencies:
   collection: ^1.17.2
   cryptography: ^2.5.0
   pointycastle: ^4.0.0
-  polkadart_scale_codec: ^1.6.0
+  polkadart_scale_codec:
+    git:
+      url: https://github.com/Quantus-Network/polkadart.git
+      ref: 0_7_3_quantus_1
+      path: packages/polkadart_scale_codec
 
 dev_dependencies:
   lints: ^6.0.0
