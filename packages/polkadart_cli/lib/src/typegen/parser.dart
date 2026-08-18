@@ -1,5 +1,11 @@
 part of descriptors;
 
+/// Whether [type] is the unit type `()`, which occupies zero bytes on the wire.
+bool _isUnitType(metadata.PortableTypeDef type) {
+  final typeDef = type.typeDef;
+  return typeDef is metadata.TypeDefTuple && typeDef.fields.isEmpty && type.path.isEmpty;
+}
+
 /// Transform a list of [TypeMetadata] into a [Map] of [TypeDescriptor]
 Map<int, TypeDescriptor> parseTypes(List<metadata.PortableType> registry, String typesPath) {
   // Type Definitions
@@ -24,6 +30,15 @@ Map<int, TypeDescriptor> parseTypes(List<metadata.PortableType> registry, String
 
     // Create Compact Generator
     if (type.typeDef is metadata.TypeDefCompact) {
+      final compact = type.typeDef as metadata.TypeDefCompact;
+      final inner = types[compact.type];
+
+      // `Compact<()>` encodes to zero bytes, it must not consume a compact integer
+      if (inner != null && _isUnitType(inner.type)) {
+        generators[typeID] = EmptyDescriptor(typeID);
+        continue;
+      }
+
       // Ignore the compact type, is not important
       generators[typeID] = CompactDescriptor(typeID);
       continue;
@@ -57,7 +72,7 @@ Map<int, TypeDescriptor> parseTypes(List<metadata.PortableType> registry, String
       final tuple = type.typeDef as metadata.TypeDefTuple;
 
       // Create an Empty Type
-      if (tuple.fields.isEmpty && type.path.isEmpty) {
+      if (_isUnitType(type)) {
         generators[typeID] = EmptyDescriptor(typeID);
         continue;
       }
