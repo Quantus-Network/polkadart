@@ -17,7 +17,7 @@ dependencies:
   polkadart_scale_codec:
     git:
       url: https://github.com/Quantus-Network/polkadart.git
-      ref: 0_7_3_quantus_1
+      ref: 0_7_3_quantus_2
       path: packages/polkadart_scale_codec
 
 dev_dependencies:

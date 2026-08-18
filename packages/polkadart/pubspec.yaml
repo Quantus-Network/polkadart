@@ -16,23 +16,23 @@ dependencies:
   polkadart_scale_codec:
     git:
       url: https://github.com/Quantus-Network/polkadart.git
-      ref: 0_7_3_quantus_1
+      ref: 0_7_3_quantus_2
       path: packages/polkadart_scale_codec
   substrate_metadata:
     git:
       url: https://github.com/Quantus-Network/polkadart.git
-      ref: 0_7_3_quantus_1
+      ref: 0_7_3_quantus_2
       path: packages/substrate_metadata
   hashlib_codecs: ^3.0.1 # BSD-3-Clause
   polkadart_keyring:
     git:
       url: https://github.com/Quantus-Network/polkadart.git
-      ref: 0_7_3_quantus_1
+      ref: 0_7_3_quantus_2
       path: packages/polkadart_keyring
   ss58:
     git:
       url: https://github.com/Quantus-Network/polkadart.git
-      ref: 0_7_3_quantus_1
+      ref: 0_7_3_quantus_2
       path: packages/ss58
 
 dev_dependencies:

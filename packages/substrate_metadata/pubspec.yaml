@@ -16,12 +16,12 @@ dependencies:
   polkadart:
     git:
       url: https://github.com/Quantus-Network/polkadart.git
-      ref: 0_7_3_quantus_1
+      ref: 0_7_3_quantus_2
       path: packages/polkadart
   polkadart_scale_codec:
     git:
       url: https://github.com/Quantus-Network/polkadart.git
-      ref: 0_7_3_quantus_1
+      ref: 0_7_3_quantus_2
       path: packages/polkadart_scale_codec
   utility: ^1.0.3
   cross_file: ^0.3.4+2 # BSD-3-Clause

@@ -17,7 +17,7 @@ dependencies:
   substrate_bip39:
     git:
       url: https://github.com/Quantus-Network/polkadart.git
-      ref: 0_7_3_quantus_1
+      ref: 0_7_3_quantus_2
       path: packages/substrate_bip39
 
 dev_dependencies:

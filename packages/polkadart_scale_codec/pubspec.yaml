@@ -16,7 +16,7 @@ dependencies:
   substrate_metadata:
     git:
       url: https://github.com/Quantus-Network/polkadart.git
-      ref: 0_7_3_quantus_1
+      ref: 0_7_3_quantus_2
       path: packages/substrate_metadata
 
 dev_dependencies:
