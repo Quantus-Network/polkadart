@@ -32,6 +32,7 @@ class I32SequenceCodec with Codec<List<int>> {
   @override
   Int32Buffer decode(Input input) {
     final length = CompactCodec.codec.decode(input);
+    assertSequenceFits(length, input);
     final list = Int32Buffer(length);
     for (var i = 0; i < length; i++) {
       list[i] = I32Codec.codec.decode(input);

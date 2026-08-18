@@ -15,6 +15,7 @@ class StrCodec with Codec<String> {
   @override
   String decode(Input input) {
     final size = CompactCodec.codec.decode(input);
+    assertSequenceFits(size, input);
     final bytes = input.readBytes(size);
     final decoded = utf8.decode(bytes);
     // Strip trailing null bytes that may exist in fixed-length string fields

@@ -163,3 +163,19 @@ class CompactCodec with Codec<int> {
     }
   }
 }
+
+/// Refuses a length prefix that cannot be backed by the bytes that remain.
+///
+/// Every element of a sequence occupies at least one byte, so a prefix larger
+/// than the remaining input is malformed. Checking before allocating stops a
+/// short hostile payload from claiming gigabytes.
+void assertSequenceFits(int length, Input input) {
+  if (length < 0) {
+    throw AssertionException('Sequence length $length is negative.');
+  }
+  final remaining = input.remainingLength;
+  if (remaining != null && length > remaining) {
+    throw AssertionException(
+        'Sequence claims $length elements but only $remaining bytes remain.');
+  }
+}

@@ -16,6 +16,7 @@ class SequenceCodec<A> with Codec<List<A>> {
   @override
   List<A> decode(Input input) {
     final size = CompactCodec.codec.decode(input);
+    assertSequenceFits(size, input);
     return List.generate(size, (index) => codec.decode(input), growable: true);
   }
 

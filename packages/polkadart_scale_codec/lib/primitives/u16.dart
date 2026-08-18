@@ -31,6 +31,7 @@ class U16SequenceCodec with Codec<List<int>> {
   @override
   Uint16Buffer decode(Input input) {
     final length = CompactCodec.codec.decode(input);
+    assertSequenceFits(length, input);
     final list = Uint16Buffer(length);
     for (var i = 0; i < length; i++) {
       list[i] = U16Codec.codec.decode(input);

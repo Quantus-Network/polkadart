@@ -33,6 +33,7 @@ class U64SequenceCodec with Codec<List<BigInt>> {
   @override
   List<BigInt> decode(Input input) {
     final length = CompactCodec.codec.decode(input);
+    assertSequenceFits(length, input);
     final list = List<BigInt>.filled(length, BigInt.zero);
     for (var i = 0; i < length; i++) {
       list[i] = U64Codec.codec.decode(input);

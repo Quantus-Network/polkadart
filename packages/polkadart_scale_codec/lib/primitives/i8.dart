@@ -32,6 +32,7 @@ class I8SequenceCodec with Codec<List<int>> {
   @override
   Int8Buffer decode(Input input) {
     final length = CompactCodec.codec.decode(input);
+    assertSequenceFits(length, input);
     final list = Int8Buffer(length);
     for (var i = 0; i < length; i++) {
       list[i] = I8Codec.codec.decode(input);

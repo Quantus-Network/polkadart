@@ -13,6 +13,7 @@ class BTreeMapCodec<K, V> with Codec<Map<K, V>> {
     final result = <K, V>{};
 
     final length = CompactCodec.codec.decode(input);
+    assertSequenceFits(length, input);
 
     for (var i = 0; i < length; i++) {
       final key = keyCodec.decode(input);

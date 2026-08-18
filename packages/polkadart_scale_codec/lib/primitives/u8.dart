@@ -30,6 +30,7 @@ class U8SequenceCodec with Codec<List<int>> {
   @override
   Uint8Buffer decode(Input input) {
     final length = CompactCodec.codec.decode(input);
+    assertSequenceFits(length, input);
     final list = Uint8Buffer(length);
     for (var i = 0; i < length; i++) {
       list[i] = U8Codec.codec.decode(input);
